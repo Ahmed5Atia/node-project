@@ -30,6 +30,13 @@ const taskSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User", required: true
     },
+    reminder: {
+        type: Date
+    },
+    reminderSent: {
+        type: Boolean,
+        default: false
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model("Task", taskSchema);
