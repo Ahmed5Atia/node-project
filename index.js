@@ -1,11 +1,10 @@
-require('dotenv').config();
+require('dotenv/config');
 const express = require("express");
 const mongoose = require("mongoose");
-const userRoutes = require("./src/routes/userRoutes");
-const authRoutes = require("./src/routes/authRoutes");
-const taskRoutes = require("./src/routes/taskRoutes");
-const authMiddleware = require("./src/middlewares/authMiddleware");
-require('./src/jobs/reminderJob');
+const userRoutes = require("./src/routes/userRoutes.js");
+const taskRoutes = require("./src/routes/taskRoutes.js");
+const authMiddleware = require("./src/middlewares/auth.js").authenticate;
+require('./src/jobs/reminderJob.js');
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +15,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/NodeProject")
 
 app.use(express.json());
 
-app.use("/auth", authRoutes);
+
 app.use("/users", authMiddleware, userRoutes);
 app.use("/tasks", authMiddleware, taskRoutes);
 
