@@ -6,7 +6,7 @@ const getAllTasks = async (req, res) => {
     const { category, priority, status, search } = req.query;
     const query = { owner: req.user.id };
     //Pagination part 
-    const { pageNumber } = req.query;
+    const { pageNumber } = req.query; //Query Parameter
     const taskePerPage = 5;
 
     // Filtering
