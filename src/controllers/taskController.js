@@ -5,6 +5,9 @@ const getAllTasks = async (req, res) => {
   try {
     const { category, priority, status, search } = req.query;
     const query = { owner: req.user.id };
+    //Pagination part 
+    const { pageNumber } = req.query;
+    const taskePerPage = 5;
 
     // Filtering
     if (category) query.category = category;
@@ -20,7 +23,9 @@ const getAllTasks = async (req, res) => {
       ];
     }
 
-    const tasks = await Task.find(query);
+    const tasks = await Task.find(query)
+                            .skip((+pageNumber - 1) * taskePerPage)
+                            .limit(taskePerPage); //Pagination strategy
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch tasks" });
