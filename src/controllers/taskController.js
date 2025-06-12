@@ -3,10 +3,9 @@ const Task = require("../models/Task");
 // Get all tasks with filtering and searching
 const getAllTasks = async (req, res) => {
   try {
-    const { category, priority, status, search } = req.query;
+    const { category, priority, status, search, pageNumber } = req.query;
     const query = { owner: req.user.id };
     //Pagination part 
-    const { pageNumber } = req.query; //Query Parameter
     const taskePerPage = 5;
 
     // Filtering
