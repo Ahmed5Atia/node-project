@@ -1,7 +1,6 @@
 const Task = require("../models/Task");
 
-
-//get all tasks
+// Get all tasks with filtering and searching
 const getAllTasks = async (req, res) => {
   try {
     const { category, priority, status, search } = req.query;
@@ -24,14 +23,22 @@ const getAllTasks = async (req, res) => {
     const tasks = await Task.find(query);
     res.json(tasks);
   } catch (err) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Failed to fetch tasks" });
   }
 };
 
 //create a new task
 const createTask = async (req, res) => {
   try {
-    const { title, description, dueDate, priority, status, category, reminder } = req.body;
+    const {
+      title,
+      description,
+      dueDate,
+      priority,
+      status,
+      category,
+      reminder,
+    } = req.body;
     const task = await Task.create({
       title,
       description,
@@ -71,7 +78,10 @@ const updateTask = async (req, res) => {
 //delate one task by id
 const deleteTask = async (req, res) => {
   try {
-    const task = await Task.findOneAndDelete({ _id: req.params.id, owner: req.user.id });
+    const task = await Task.findOneAndDelete({
+      _id: req.params.id,
+      owner: req.user.id,
+    });
     if (!task) return res.status(404).json({ error: "Task not found" });
     res.json({ message: "Task Deleted Successfully" });
   } catch (err) {
@@ -79,4 +89,16 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTasks, createTask, updateTask,deleteTask };
+// Search tasks by query parameter 'q'
+// const searchTasks = async (req, res) => {
+//   req.query.search = req.query.q;
+//   return getAllTasks(req, res);
+// };
+
+module.exports = {
+  getAllTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  // searchTasks,
+};
