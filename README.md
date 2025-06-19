@@ -4,10 +4,10 @@ A comprehensive RESTful API for task management with user authentication, filter
 
 ## Made By:
 
-Ahmed Abdelrady Khalifa
-Ahmed Mahmoud Atia
-Ragab Rasmy Hussien
-Taha Mustafa Fuad
+- Ahmed Abdelrady Khalifa
+- Ahmed Mahmoud Atia
+- Ragab Rasmy Hussien
+- Taha Mustafa Fuad
 
 ## Features ✨
 
