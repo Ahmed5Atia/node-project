@@ -2,6 +2,13 @@
 
 A comprehensive RESTful API for task management with user authentication, filtering, searching, pagination, and email reminders.
 
+## Made By:
+
+Ahmed Abdelrady Khalifa
+Ahmed Mahmoud Atia
+Ragab Rasmy Hussien
+Taha Mustafa Fuad
+
 ## Features ✨
 
 - 🔐 **User Authentication**: JWT-based registration and login
